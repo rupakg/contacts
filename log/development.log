@@ -1,0 +1,644 @@
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (195.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (150.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateContacts (20100107042716)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "fname" varchar(255), "lname" varchar(255), "dob" datetime, "order" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107042716')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("contacts")[0m
+
+
+Processing ContactsController#show to json (for 127.0.0.1 at 2010-01-07 00:32:45) [GET]
+  Parameters: {"id"=>"contacts"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Contact with ID=contacts):
+  app/controllers/contacts_controller.rb:19:in `show'
+
+Rendered rescues/_trace (101.0ms)
+Rendered rescues/_request_and_response (4.0ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 00:33:09) [GET]
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 17288ms (View: 17254, DB: 0) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 00:39:45) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 638ms (View: 623, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-07 00:41:05) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"of2f29rkNDdazeK7QVZo9ifEVNmIVxDt5ywzQcte+Fg=", "contact"=>{"order"=>"1", "dob(1i)"=>"2005", "dob(2i)"=>"1", "lname"=>"Somers", "dob(3i)"=>"7", "fname"=>"Michael", "dob(4i)"=>"05", "dob(5i)"=>"39"}}
+  [4;36;1mContact Create (40.0ms)[0m   [0;1mINSERT INTO "contacts" ("dob", "updated_at", "order", "lname", "fname", "created_at") VALUES('2005-01-07 05:39:00', '2010-01-07 05:41:05', 1, 'Somers', 'Michael', '2010-01-07 05:41:05')[0m
+Redirected to http://localhost:3000/contacts/1
+Completed in 482ms (DB: 40) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-07 00:41:06) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 43ms (View: 24, DB: 1) | 200 OK [http://localhost/contacts/1]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 00:45:09) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+
+NoMethodError (undefined method `description' for #<Contact:0x65227f8>):
+  app/controllers/contacts_controller.rb:92:in `json_for_contact'
+  app/controllers/contacts_controller.rb:9:in `index'
+  app/controllers/contacts_controller.rb:9:in `map'
+  app/controllers/contacts_controller.rb:9:in `index'
+  app/controllers/contacts_controller.rb:8:in `index'
+
+Rendered rescues/_trace (93.0ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 00:47:15) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 32ms (View: 13, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 00:47:23) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 59ms (View: 46, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-07 00:47:43) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"of2f29rkNDdazeK7QVZo9ifEVNmIVxDt5ywzQcte+Fg=", "contact"=>{"order"=>"2", "dob(1i)"=>"2006", "dob(2i)"=>"1", "lname"=>"Ganguly", "dob(3i)"=>"1", "fname"=>"Rupak", "dob(4i)"=>"05", "dob(5i)"=>"47"}}
+  [4;36;1mContact Create (3.0ms)[0m   [0;1mINSERT INTO "contacts" ("dob", "updated_at", "order", "lname", "fname", "created_at") VALUES('2006-01-01 05:47:00', '2010-01-07 05:47:44', 2, 'Ganguly', 'Rupak', '2010-01-07 05:47:44')[0m
+Redirected to http://localhost:3000/contacts/2
+Completed in 191ms (DB: 3) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-07 00:47:45) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 2) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 30ms (View: 8, DB: 0) | 200 OK [http://localhost/contacts/2]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 00:54:06) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 38ms (View: 20, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 00:54:14) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 204ms (View: 189, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-07 00:55:32) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"of2f29rkNDdazeK7QVZo9ifEVNmIVxDt5ywzQcte+Fg=", "contact"=>{"order"=>"3", "dob(1i)"=>"2005", "dob(2i)"=>"1", "lname"=>"Ganguly", "dob(3i)"=>"20", "fname"=>"Jasmine", "dob(4i)"=>"05", "dob(5i)"=>"54"}}
+  [4;35;1mContact Create (3.0ms)[0m   [0mINSERT INTO "contacts" ("dob", "updated_at", "order", "lname", "fname", "created_at") VALUES('2005-01-20 05:54:00', '2010-01-07 05:55:32', 3, 'Ganguly', 'Jasmine', '2010-01-07 05:55:32')[0m
+Redirected to http://localhost:3000/contacts/3
+Completed in 212ms (DB: 3) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-07 00:55:34) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 3) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 29ms (View: 7, DB: 0) | 200 OK [http://localhost/contacts/3]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 00:56:01) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 45ms (View: 21, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index to json (for 127.0.0.1 at 2010-01-07 00:56:13) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 25ms (View: 3, DB: 1) | 200 OK [http://localhost/contacts?format=json]
+
+
+Processing ContactsController#show to json (for 127.0.0.1 at 2010-01-07 00:56:45) [GET]
+  Parameters: {"id"=>"index"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Contact with ID=index):
+  app/controllers/contacts_controller.rb:19:in `show'
+
+Rendered rescues/_trace (88.0ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ContactsController#index to json (for 127.0.0.1 at 2010-01-07 00:57:09) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 27ms (View: 4, DB: 1) | 200 OK [http://localhost/contacts?format=json]
+
+
+Processing ContactsController#show to json (for 127.0.0.1 at 2010-01-07 01:07:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Completed in 20ms (View: 2, DB: 0) | 200 OK [http://localhost/contacts/show/1.json]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 03:59:49) [GET]
+  [4;36;1mContact Load (2.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 553ms (View: 250, DB: 2) | 200 OK [http://localhost/contacts/]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 04:34:20) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 38900ms (View: 36857, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 05:13:37) [GET]
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 160ms (View: 100, DB: 0) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#show to json (for 127.0.0.1 at 2010-01-07 05:20:09) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Completed in 27ms (View: 2, DB: 0) | 200 OK [http://localhost/contacts/show/1.json]
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateContacts (20100107042716)
+  [4;36;1mSQL (15.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("contacts")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateContacts (20100107042716)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (20.0ms)[0m   [0mDROP TABLE "contacts"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20100107042716'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateContacts (20100107042716)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "fname" varchar(255), "lname" varchar(255), "dob" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100107042716')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("contacts")[0m
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 05:28:16) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 317ms (View: 303, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 05:28:33) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+
+ActionView::TemplateError (undefined method `order' for #<Contact:0x64c9180>) on line #20 of app/views/contacts/new.html.erb:
+17:   </p>
+18:   <p>
+19:     <%= f.label :order %><br />
+20:     <%= f.text_field :order %>
+21:   </p>
+22:   <p>
+23:     <%= f.submit 'Create' %>
+
+    app/views/contacts/new.html.erb:20
+    app/views/contacts/new.html.erb:3
+    app/controllers/contacts_controller.rb:39:in `new'
+
+Rendered rescues/_trace (613.0ms)
+Rendered rescues/_request_and_response (3.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 05:35:36) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 2254ms (View: 1480, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-07 05:36:13) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"i03wJRvpoV8htiUXLRy88HUjDUws5E0owNruVxKbN2k=", "contact"=>{"dob"=>"1980-01-01", "lname"=>"Ganguly", "fname"=>"Rupak"}}
+  [4;35;1mContact Create (4.0ms)[0m   [0mINSERT INTO "contacts" ("dob", "updated_at", "lname", "fname", "created_at") VALUES('1980-01-01', '2010-01-07 10:36:13', 'Ganguly', 'Rupak', '2010-01-07 10:36:13')[0m
+Redirected to http://localhost:3000/contacts/1
+Completed in 915ms (DB: 4) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-07 05:36:16) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 323ms (View: 195, DB: 1) | 200 OK [http://localhost/contacts/1]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 05:36:19) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 696ms (View: 657, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-07 05:36:25) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 98ms (View: 61, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-07 05:37:13) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"i03wJRvpoV8htiUXLRy88HUjDUws5E0owNruVxKbN2k=", "contact"=>{"dob"=>"1980-01-20", "lname"=>"Ganguly", "fname"=>"Jasmine"}}
+  [4;36;1mContact Create (17.0ms)[0m   [0;1mINSERT INTO "contacts" ("dob", "updated_at", "lname", "fname", "created_at") VALUES('1980-01-20', '2010-01-07 10:37:13', 'Ganguly', 'Jasmine', '2010-01-07 10:37:13')[0m
+Redirected to http://localhost:3000/contacts/2
+Completed in 544ms (DB: 17) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-07 05:37:15) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 2) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 28ms (View: 6, DB: 1) | 200 OK [http://localhost/contacts/2]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-07 05:37:19) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 36ms (View: 21, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 17:40:38) [GET]
+  [4;36;1mContact Load (2.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 18056ms (View: 17999, DB: 2) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#new (for 127.0.0.1 at 2010-01-22 17:41:03) [GET]
+Rendering template within layouts/contacts
+Rendering contacts/new
+Completed in 93ms (View: 50, DB: 0) | 200 OK [http://localhost/contacts/new]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-22 17:41:34) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"uaWRgEKbbvYVLRBzjZGmH6R0nMHKGGAnU6TMzQ1nOYM=", "contact"=>{"dob"=>"01-20-1980", "lname"=>"Barcena", "fname"=>"Javier"}}
+  [4;35;1mContact Create (58.0ms)[0m   [0mINSERT INTO "contacts" ("dob", "updated_at", "lname", "fname", "created_at") VALUES('01-20-1980', '2010-01-22 22:41:34', 'Barcena', 'Javier', '2010-01-22 22:41:34')[0m
+Redirected to http://localhost:3000/contacts/3
+Completed in 570ms (DB: 58) | 302 Found [http://localhost/contacts]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-22 17:41:36) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 3) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 63ms (View: 35, DB: 1) | 200 OK [http://localhost/contacts/3]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 17:41:48) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 46ms (View: 28, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 17:46:12) [GET]
+  [4;36;1mContact Load (50.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 163ms (View: 86, DB: 50) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 17:58:14) [GET]
+  [4;35;1mContact Load (44.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 600ms (View: 397, DB: 44) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 18:54:45) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 6849ms (View: 6822, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 19:45:56) [GET]
+  [4;35;1mContact Load (402.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 3183ms (View: 1861, DB: 402) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index to json (for 127.0.0.1 at 2010-01-22 19:56:01) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 140ms (View: 38, DB: 1) | 200 OK [http://localhost/contacts?format=json]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:10:09) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 209ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-22 21:12:50) [POST]
+  Parameters: {"contact"=>{"dob"=>"01-01-1900", "lname"=>"LastName1", "fname"=>"FirstName1"}}
+  [4;36;1mContact Create (2.0ms)[0m   [0;1mINSERT INTO "contacts" ("dob", "updated_at", "lname", "fname", "created_at") VALUES('01-01-1900', '2010-01-23 02:12:50', 'LastName1', 'FirstName1', '2010-01-23 02:12:50')[0m
+Completed in 196ms (View: 6, DB: 2) | 201 Created [http://localhost/contacts]
+
+
+Processing ContactsController#update (for 127.0.0.1 at 2010-01-22 21:12:57) [PUT]
+  Parameters: {"contact"=>{"dob"=>"01-01-1900", "lname"=>"LastName1", "fname"=>"kaka ji"}, "id"=>"4"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 4) [0m
+  [4;36;1mContact Update (1.0ms)[0m   [0;1mUPDATE "contacts" SET "fname" = 'kaka ji', "updated_at" = '2010-01-23 02:12:57' WHERE "id" = 4[0m
+Completed in 224ms (View: 5, DB: 1) | 200 OK [http://localhost/contacts/4]
+
+
+Processing ContactsController#create (for 127.0.0.1 at 2010-01-22 21:13:01) [POST]
+  Parameters: {"contact"=>{"dob"=>"01-01-1900", "lname"=>"LastName1", "fname"=>"FirstName1"}}
+  [4;35;1mContact Create (2.0ms)[0m   [0mINSERT INTO "contacts" ("dob", "updated_at", "lname", "fname", "created_at") VALUES('01-01-1900', '2010-01-23 02:13:01', 'LastName1', 'FirstName1', '2010-01-23 02:13:01')[0m
+Completed in 263ms (View: 21, DB: 2) | 201 Created [http://localhost/contacts]
+
+
+Processing ContactsController#update (for 127.0.0.1 at 2010-01-22 21:13:05) [PUT]
+  Parameters: {"contact"=>{"dob"=>"01-01-1900", "lname"=>"LastName1", "fname"=>"abcd"}, "id"=>"5"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 5) [0m
+  [4;35;1mContact Update (1.0ms)[0m   [0mUPDATE "contacts" SET "fname" = 'abcd', "updated_at" = '2010-01-23 02:13:05' WHERE "id" = 5[0m
+Completed in 212ms (View: 5, DB: 1) | 200 OK [http://localhost/contacts/5]
+
+
+Processing ContactsController#destroy (for 127.0.0.1 at 2010-01-22 21:13:25) [DELETE]
+  Parameters: {"id"=>"5"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 5) [0m
+  [4;35;1mContact Destroy (2.0ms)[0m   [0mDELETE FROM "contacts" WHERE "id" = 5[0m
+Completed in 209ms (View: 4, DB: 3) | 200 OK [http://localhost/contacts/5]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:16:54) [GET]
+  [4;36;1mContact Load (38.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 944ms (View: 70, DB: 38) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:17:04) [GET]
+  [4;35;1mContact Load (2.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 47ms (View: 2, DB: 2) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#destroy (for 127.0.0.1 at 2010-01-22 21:21:49) [DELETE]
+  Parameters: {"id"=>"4"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 4) [0m
+  [4;35;1mContact Destroy (1.0ms)[0m   [0mDELETE FROM "contacts" WHERE "id" = 4[0m
+Completed in 712ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts/4]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:21:57) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 168ms (View: 99, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:28:30) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 162ms (View: 3, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:57:20) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 129ms (View: 3, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#edit (for 127.0.0.1 at 2010-01-22 21:57:21) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Rendering template within layouts/contacts
+Rendering contacts/edit
+Completed in 320ms (View: 239, DB: 0) | 200 OK [http://localhost/contacts/1/edit]
+
+
+Processing ContactsController#update (for 127.0.0.1 at 2010-01-22 21:57:37) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"EJ/zZhvi708tLFOpUja29prVTbs9a2OT7qYVFU2enUg=", "contact"=>{"dob"=>"01-01-1980", "lname"=>"Ganguly", "fname"=>"Rupak"}, "id"=>"1"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+  [4;35;1mContact Update (8.0ms)[0m   [0mUPDATE "contacts" SET "dob" = '01-01-1980', "updated_at" = '2010-01-23 02:57:37' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/contacts/1
+Completed in 218ms (DB: 9) | 302 Found [http://localhost/contacts/1]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-22 21:57:39) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 1) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 134ms (View: 81, DB: 1) | 200 OK [http://localhost/contacts/1]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:57:44) [GET]
+  [4;35;1mContact Load (10.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 140ms (View: 80, DB: 10) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#edit (for 127.0.0.1 at 2010-01-22 21:57:49) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 2) [0m
+Rendering template within layouts/contacts
+Rendering contacts/edit
+Completed in 82ms (View: 33, DB: 1) | 200 OK [http://localhost/contacts/2/edit]
+
+
+Processing ContactsController#update (for 127.0.0.1 at 2010-01-22 21:57:59) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"EJ/zZhvi708tLFOpUja29prVTbs9a2OT7qYVFU2enUg=", "contact"=>{"dob"=>"01-20-1980", "lname"=>"Ganguly", "fname"=>"Jasmine"}, "id"=>"2"}
+  [4;35;1mContact Load (7.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 2) [0m
+  [4;36;1mContact Update (2.0ms)[0m   [0;1mUPDATE "contacts" SET "dob" = '01-20-1980', "updated_at" = '2010-01-23 02:57:59' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/contacts/2
+Completed in 280ms (DB: 9) | 302 Found [http://localhost/contacts/2]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-22 21:58:01) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 2) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 486ms (View: 30, DB: 1) | 200 OK [http://localhost/contacts/2]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 21:58:08) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+Completed in 200ms (View: 157, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#edit (for 127.0.0.1 at 2010-01-22 21:58:15) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" WHERE ("contacts"."id" = 3) [0m
+Rendering template within layouts/contacts
+Rendering contacts/edit
+Completed in 83ms (View: 32, DB: 0) | 200 OK [http://localhost/contacts/3/edit]
+
+
+Processing ContactsController#update (for 127.0.0.1 at 2010-01-22 21:58:22) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"EJ/zZhvi708tLFOpUja29prVTbs9a2OT7qYVFU2enUg=", "contact"=>{"dob"=>"03-20-1980", "lname"=>"Barcena", "fname"=>"Javier"}, "id"=>"3"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 3) [0m
+  [4;35;1mContact Update (9.0ms)[0m   [0mUPDATE "contacts" SET "dob" = '03-20-1980', "updated_at" = '2010-01-23 02:58:22' WHERE "id" = 3[0m
+Redirected to http://localhost:3000/contacts/3
+Completed in 238ms (DB: 9) | 302 Found [http://localhost/contacts/3]
+
+
+Processing ContactsController#show (for 127.0.0.1 at 2010-01-22 21:58:23) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mContact Load (0.0ms)[0m   [0;1mSELECT * FROM "contacts" WHERE ("contacts"."id" = 3) [0m
+Rendering template within layouts/contacts
+Rendering contacts/show
+Completed in 130ms (View: 20, DB: 0) | 200 OK [http://localhost/contacts/3]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 22:03:51) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 57ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 22:17:03) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 54ms (View: 4, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 22:22:47) [GET]
+  [4;35;1mContact Load (2.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 42ms (View: 2, DB: 2) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-22 22:44:29) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 160ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 00:33:13) [GET]
+  [4;35;1mContact Load (2.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 234ms (View: 2, DB: 2) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 00:56:40) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" [0m
+Completed in 156ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 01:27:21) [GET]
+  [4;35;1mContact Load (1.0ms)[0m   [0mSELECT * FROM "contacts" [0m
+Completed in 55ms (View: 3, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 02:02:13) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" LIMIT 0 OFFSET 0[0m
+Completed in 61ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 02:11:34) [GET]
+  [4;35;1mContact Load (0.0ms)[0m   [0mSELECT * FROM "contacts" LIMIT 0 OFFSET 0[0m
+Completed in 38ms (View: 2, DB: 0) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-23 02:26:37) [GET]
+  [4;36;1mContact Load (1.0ms)[0m   [0;1mSELECT * FROM "contacts" LIMIT 0 OFFSET 0[0m
+Completed in 116ms (View: 2, DB: 1) | 200 OK [http://localhost/contacts]
+
+
+Processing ContactsController#index (for 127.0.0.1 at 2010-01-24 23:33:02) [GET]
+  [4;36;1mContact Load (2.0ms)[0m   [0;1mSELECT * FROM "contacts" LIMIT 0 OFFSET 0[0m
+Rendering template within layouts/contacts
+Rendering contacts/index
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #10 of app/views/contacts/index.html.erb:
+7:     <th>Dob</th>
+8:   </tr>
+9: 
+10: <% @contacts.each do |contact| %>
+11:   <tr>
+12:     <td><%=h contact.fname %></td>
+13:     <td><%=h contact.lname %></td>
+
+    app/views/contacts/index.html.erb:10
+    app/controllers/contacts_controller.rb:10:in `index'
+
+Rendered rescues/_trace (584.0ms)
+Rendered rescues/_request_and_response (11.0ms)
+Rendering rescues/layout (internal_server_error)

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fname: MyString
+  lname: MyString
+  dob: 2010-01-06 23:27:16
+  order: 1
+
+two:
+  fname: MyString
+  lname: MyString
+  dob: 2010-01-06 23:27:16
+  order: 1
